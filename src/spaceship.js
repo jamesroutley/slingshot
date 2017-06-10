@@ -58,7 +58,7 @@ class SpaceShip {
       return;
     }
     switch (p.key) {
-      case ' ':
+      case 'w':
         this.boost();
         break;
       case 'a':
@@ -81,7 +81,7 @@ class SpaceShip {
     p.rotate(this.rotation);
     p.rect(-3, -5, this.width, this.length, 2);
     // TODO: move this logic into boost() ?
-    if (p.keyIsPressed && p.key === ' ' && this.fuel > 0) {
+    if (p.keyIsPressed && p.key === 'w' && this.fuel > 0) {
       p.fill('#ff8a65');
       p.rect(-3, 4, 6, 3);
     }

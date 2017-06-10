@@ -7,7 +7,9 @@ const Vector = require('./vector');
 
 const game = (p) => {
   let drawables = [];
-  const planets = levels['01'].planets.map(planet => new Planet(planet.pos, planet.r));
+  const planets = levels['01'].planets.map(planet => (
+    new Planet(new Vector(planet.pos.x, planet.pos.y), planet.r)
+  ));
   drawables = drawables.concat(planets);
   const spaceship = new SpaceShip(new Vector(20, 690), planets);
   drawables.push(spaceship);

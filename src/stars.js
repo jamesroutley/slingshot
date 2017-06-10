@@ -7,6 +7,8 @@ const randInRange = n => (
 
 class Stars {
   constructor(x, y) {
+    this.x = x;
+    this.y = y;
     const numPositions = x * y;
     const numStars = Math.floor(numPositions * constants.stars.fillRatio);
     this.stars = [];
@@ -14,11 +16,18 @@ class Stars {
       this.stars.push(
         new p5.Vector(randInRange(x), randInRange(y)));
     }
+    this.offset = 0;
   }
 
   draw(p) {
+    p.fill('#ffecb3');
+    if (p.frameCount % 2 === 0) {
+      this.offset += 1;
+    }
     this.stars.forEach((star) => {
-      p.ellipse(star.x, star.y, 4);
+      const x = (star.x + this.offset) % this.x;
+      const y = (star.y + this.offset) % this.y;
+      p.ellipse(x, y, 4);
     });
   }
 }

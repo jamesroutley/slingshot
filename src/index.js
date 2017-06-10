@@ -46,8 +46,6 @@ const game = (p) => {
       drawable.draw(p);
       p.pop();
     });
-    p.fill('#ffecb3');
-    p.ellipse(100, 100, 4);
   };
 };
 

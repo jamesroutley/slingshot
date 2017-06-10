@@ -42,7 +42,7 @@ class SpaceShip {
     this.pos = physics.position(this.pos, this.v);
   }
 
-  checkKeyPress(p) {
+  handleKeyPress(p) {
     if (!p.keyIsPressed) {
       this.stopBoost();
       return;
@@ -52,6 +52,7 @@ class SpaceShip {
         this.boost();
         break;
       case 'a':
+        // TODO: move rotation to constants
         this.rotation -= 0.1;
         break;
       case 'd':
@@ -63,13 +64,16 @@ class SpaceShip {
   }
 
   draw(p) {
-    this.checkKeyPress(p);
-
+    this.handleKeyPress(p);
     this.move();
     p.fill('#babdbe');
     p.translate(this.pos.x, this.pos.y);
     p.rotate(this.rotation);
     p.rect(-3, -5, 6, 10, 2);
+    if (p.keyIsPressed && p.key === ' ') {
+      p.fill('#ff8a65');
+      p.rect(-3, 4, 6, 3);
+    }
   }
 }
 

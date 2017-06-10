@@ -16,6 +16,8 @@ class SpaceShip {
   }
 
   boost() {
+    // TODO: reimplement this using p5.Vector.fromAngle()
+    // and scalar multiplying it by the force.
     // Force vector initially points up (0, -1)
     const force = new p5.Vector(
       0, -this.rocketForcePerS / constants.frameRate);
@@ -40,17 +42,34 @@ class SpaceShip {
     this.pos = physics.position(this.pos, this.v);
   }
 
-  draw(p) {
-    if (p.keyIsPressed === true && p.key === ' ') {
-      this.boost();
-    } else {
+  checkKeyPress(p) {
+    if (!p.keyIsPressed) {
       this.stopBoost();
+      return;
     }
+    switch (p.key) {
+      case ' ':
+        this.boost();
+        break;
+      case 'a':
+        this.rotation -= 0.1;
+        break;
+      case 'd':
+        this.rotation += 0.1;
+        break;
+      default:
+        break;
+    }
+  }
+
+  draw(p) {
+    this.checkKeyPress(p);
+
     this.move();
     p.fill('#babdbe');
     p.translate(this.pos.x, this.pos.y);
     p.rotate(this.rotation);
-    p.rect(0, 0, 5, 10, 2);
+    p.rect(-3, -5, 6, 10, 2);
   }
 }
 

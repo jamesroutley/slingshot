@@ -4,7 +4,7 @@ const Vector = require('./vector');
 const dt = 1 / constants.frameRate;
 
 const acceleration = (previous_a, force, mass) => (
-  new Vector(previous_a.x + (force.x * dt / mass), previous_a.y + (force.y * dt / mass))
+  new Vector((force.x / mass), (force.y / mass))
 );
 
 const velocity = (previous_v, a) => (
@@ -20,7 +20,7 @@ const gravForce = (distance, planetMass) => (
 );
 
 const forceFromPlanet = (pos, planet) => {
-  const distance = pos.subtract(planet.pos);
+  const distance = pos.subtract(planet.pos).scalarMultiply(constants.scale);
   const absForce = gravForce(distance.abs(), planet.mass);
   const force = distance.normalise().scalarMultiply(absForce);
   return force;

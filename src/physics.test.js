@@ -20,7 +20,7 @@ test('forceFromPlanet', () => {
   const planet = new Planet(new Vector(100, 0), 10);
   planet.mass = 100000;  // Fake planet's mass for easier maths
   const force = physics.forceFromPlanet(pos, planet);
-  expect(force).toEqual(new Vector(-6.674080000000001e-10, 0));
+  expect(force).toEqual(new Vector(-6.67408e-20, 0));
 });
 
 test('forceFromPlanets', () => {

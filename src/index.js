@@ -4,10 +4,11 @@ const constants = require('./constants');
 const collide = require('./collide');
 const levels = require('./levels');
 const Planet = require('./planet');
+const HUD = require('./hud');
 
 const gameOver = () => {
   console.log('game over');
-}
+};
 
 const handleCollisions = (ship, planets) => {
   if (collide.shipPlanets(ship, planets)) {
@@ -24,6 +25,8 @@ const game = (p) => {
   drawables = drawables.concat(planets);
   const spaceship = new SpaceShip(new p5.Vector(20, 690), planets);
   drawables.push(spaceship);
+  const hud = new HUD(spaceship);
+  drawables.push(hud);
 
   p.setup = () => {
     p.frameRate(constants.frameRate);

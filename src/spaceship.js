@@ -10,7 +10,8 @@ class SpaceShip {
     this.a = new p5.Vector(0, 0);
     this.booster_a = new p5.Vector(0, 0);
     this.rotation = 0;
-    this.fuel = 1800;
+    this.totalFuel = 1800;
+    this.fuel = this.totalFuel;
     // TODO: move these to constants.js
     this.width = 6;
     this.length = 10;

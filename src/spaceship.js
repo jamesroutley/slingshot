@@ -1,14 +1,14 @@
 const constants = require('./constants');
 const physics = require('./physics');
-const Vector = require('./vector');
+const p5 = require('p5');
 
 class SpaceShip {
   constructor(pos, planets) {
     this.pos = pos;
     this.planets = planets;
-    this.v = new Vector(0, 0);
-    this.a = new Vector(0, 0);
-    this.booster_a = new Vector(0, 0);
+    this.v = new p5.Vector(0, 0);
+    this.a = new p5.Vector(0, 0);
+    this.booster_a = new p5.Vector(0, 0);
     this.rotation = Math.PI;
     // TODO: move these to constants.js
     this.mass = 100000;
@@ -21,12 +21,13 @@ class SpaceShip {
     //   Math.sin(this.rotation), Math.cos(this.rotation),
     // ).normalise();
     // const force = direction.scalarMultiply(absForce);
-    const force = new Vector(0, -this.rocketForcePerS / constants.frameRate);
+    const force = new p5.Vector(
+      0, -this.rocketForcePerS / constants.frameRate);
     this.booster_a = physics.acceleration(force, this.mass);
   }
 
   stopBoost() {
-    this.booster_a = new Vector(0, 0);
+    this.booster_a = new p5.Vector(0, 0);
   }
 
   calculateForces() {

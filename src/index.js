@@ -3,15 +3,15 @@ const SpaceShip = require('./spaceship');
 const constants = require('./constants');
 const levels = require('./levels');
 const Planet = require('./planet');
-const Vector = require('./vector');
 
 const game = (p) => {
+  // Maybe this should be move to p.setup()?
   let drawables = [];
   const planets = levels['01'].planets.map(planet => (
-    new Planet(new Vector(planet.pos.x, planet.pos.y), planet.r)
+    new Planet(new p5.Vector(planet.pos.x, planet.pos.y), planet.r)
   ));
   drawables = drawables.concat(planets);
-  const spaceship = new SpaceShip(new Vector(20, 690), planets);
+  const spaceship = new SpaceShip(new p5.Vector(20, 690), planets);
   drawables.push(spaceship);
 
   p.setup = () => {

@@ -20,6 +20,8 @@ const gravForce = (distance, planetMass) => (
 );
 
 const forceFromPlanet = (pos, planet) => {
+  // TODO: multiplying by 1000 is an arbitrary constant to improve performance.
+  // Fix this at some point
   const distance = planet.pos.subtract(pos).scalarMultiply(1000);
   const absForce = gravForce(distance.abs(), planet.mass);
   const force = distance.normalise().scalarMultiply(absForce);

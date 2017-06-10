@@ -9,13 +9,18 @@ class SpaceShip {
     this.v = new Vector(0, 0);
     this.a = new Vector(0, 0);
     this.booster_a = new Vector(0, 0);
-    this.rotation = 1;
+    this.rotation = Math.PI;
     // TODO: move these to constants.js
     this.mass = 100000;
     this.rocketForcePerS = 10000000;
   }
 
   boost() {
+    // const absForce = -this.rocketForcePerS / constants.frameRate;
+    // const direction = new Vector(
+    //   Math.sin(this.rotation), Math.cos(this.rotation),
+    // ).normalise();
+    // const force = direction.scalarMultiply(absForce);
     const force = new Vector(0, -this.rocketForcePerS / constants.frameRate);
     this.booster_a = physics.acceleration(force, this.mass);
   }
@@ -42,12 +47,12 @@ class SpaceShip {
     } else {
       this.stopBoost();
     }
-    // p.rotate(this.rotation);
     this.move();
     p.fill('#babdbe');
-    p.rect(this.pos.x, this.pos.y, 5, 10, 2);
+    p.translate(this.pos.x, this.pos.y);
+    p.rotate(this.rotation);
+    p.rect(0, 0, 5, 10, 2);
   }
 }
-
 
 module.exports = SpaceShip;

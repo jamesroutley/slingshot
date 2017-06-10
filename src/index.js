@@ -17,14 +17,16 @@ const game = (p) => {
   p.setup = () => {
     p.frameRate(constants.frameRate);
     // p.createCanvas(1280, 720);
-    p.createCanvas(900, 720);
+    p.createCanvas(700, 720);
     p.background('#102027');
   };
 
   p.draw = () => {
     p.background('#102027');
     drawables.forEach((drawable) => {
+      p.push();
       drawable.draw(p);
+      p.pop();
     });
   };
 };

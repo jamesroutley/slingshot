@@ -5,6 +5,7 @@ const collide = require('./collide');
 const levels = require('./levels');
 const Planet = require('./planet');
 const HUD = require('./hud');
+const Stars = require('./stars');
 
 const gameOver = () => {
   console.log('game over');
@@ -19,6 +20,8 @@ const handleCollisions = (ship, planets) => {
 const game = (p) => {
   // Maybe this should be move to p.setup()?
   let drawables = [];
+  const stars = new Stars(700, 720);
+  drawables.push(stars);
   const planets = levels['01'].planets.map(planet => (
     new Planet(new p5.Vector(planet.pos.x, planet.pos.y), planet.r)
   ));
@@ -43,6 +46,8 @@ const game = (p) => {
       drawable.draw(p);
       p.pop();
     });
+    p.fill('#ffecb3');
+    p.ellipse(100, 100, 4);
   };
 };
 

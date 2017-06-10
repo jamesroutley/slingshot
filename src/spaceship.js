@@ -9,20 +9,18 @@ class SpaceShip {
     this.v = new p5.Vector(0, 0);
     this.a = new p5.Vector(0, 0);
     this.booster_a = new p5.Vector(0, 0);
-    this.rotation = Math.PI;
+    this.rotation = 0;
     // TODO: move these to constants.js
     this.mass = 100000;
     this.rocketForcePerS = 10000000;
   }
 
   boost() {
-    // const absForce = -this.rocketForcePerS / constants.frameRate;
-    // const direction = new Vector(
-    //   Math.sin(this.rotation), Math.cos(this.rotation),
-    // ).normalise();
-    // const force = direction.scalarMultiply(absForce);
+    // Force vector initially points up (0, -1)
     const force = new p5.Vector(
       0, -this.rocketForcePerS / constants.frameRate);
+    // Rotate it to match direction of spaceship
+    force.rotate(this.rotation);
     this.booster_a = physics.acceleration(force, this.mass);
   }
 

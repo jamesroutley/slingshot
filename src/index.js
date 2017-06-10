@@ -1,8 +1,19 @@
 const p5 = require('p5');
 const SpaceShip = require('./spaceship');
 const constants = require('./constants');
+const collide = require('./collide');
 const levels = require('./levels');
 const Planet = require('./planet');
+
+const gameOver = () => {
+  console.log('game over');
+}
+
+const handleCollisions = (ship, planets) => {
+  if (collide.shipPlanets(ship, planets)) {
+    gameOver();
+  }
+};
 
 const game = (p) => {
   // Maybe this should be move to p.setup()?
@@ -23,6 +34,7 @@ const game = (p) => {
 
   p.draw = () => {
     p.background('#102027');
+    handleCollisions(spaceship, planets);
     drawables.forEach((drawable) => {
       p.push();
       drawable.draw(p);

@@ -11,6 +11,8 @@ class SpaceShip {
     this.booster_a = new p5.Vector(0, 0);
     this.rotation = 0;
     // TODO: move these to constants.js
+    this.width = 6;
+    this.length = 10;
     this.mass = 100000;
     this.rocketForcePerS = 10000000;
   }
@@ -69,7 +71,7 @@ class SpaceShip {
     p.fill('#babdbe');
     p.translate(this.pos.x, this.pos.y);
     p.rotate(this.rotation);
-    p.rect(-3, -5, 6, 10, 2);
+    p.rect(-3, -5, this.width, this.length, 2);
     if (p.keyIsPressed && p.key === ' ') {
       p.fill('#ff8a65');
       p.rect(-3, 4, 6, 3);

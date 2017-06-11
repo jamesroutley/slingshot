@@ -3,17 +3,17 @@ const SpaceShip = require('./spaceship');
 const Planet = require('./planet');
 const p5 = require('p5');
 
-test('shipPlanetTrue', () => {
+test('shipCircleTrue', () => {
   const ship = new SpaceShip(new p5.Vector(0, 0), []);
   const planet = new Planet(new p5.Vector(0, 0), 10);
-  const hit = collide.shipPlanet(ship, planet);
+  const hit = collide.shipCircle(ship, planet);
   expect(hit).toBe(true);
 });
 
-test('shipPlanetFalse', () => {
+test('shipCircleFalse', () => {
   const ship = new SpaceShip(new p5.Vector(100, 0), []);
   const planet = new Planet(new p5.Vector(0, 0), 10);
-  const hit = collide.shipPlanet(ship, planet);
+  const hit = collide.shipCircle(ship, planet);
   expect(hit).toBe(false);
 });
 

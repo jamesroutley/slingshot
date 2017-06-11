@@ -1,12 +1,16 @@
 const constants = require('./constants');
 const collide = require('./collide');
+const Checkpoint = require('./checkpoint');
 const p5 = require('p5');
 const SpaceShip = require('./spaceship');
 const Planet = require('./planet');
 const HUD = require('./hud');
 const Stars = require('./stars');
 
-const handleCollisions = (ship, planets) => {
+const handleCollisions = (ship, planets, checkpoint) => {
+  if (collide.shipCircle(ship, checkpoint)) {
+    console.log('game won');
+  }
   if (collide.shipPlanets(ship, planets)) {
     console.log('game over');
   }
@@ -31,6 +35,9 @@ class Level {
 
     const hud = new HUD(this.spaceship);
     this.drawables.push(hud);
+
+    this.checkpoint = new Checkpoint(new p5.Vector(670, 30), 20);
+    this.drawables.push(this.checkpoint);
   }
 
   start(p) {
@@ -42,7 +49,7 @@ class Level {
     };
     p.draw = () => {
       p.background('#102027');
-      handleCollisions(this.spaceship, this.planets);
+      handleCollisions(this.spaceship, this.planets, this.checkpoint);
       this.drawables.forEach((drawable) => {
         p.push();
         drawable.draw(p);

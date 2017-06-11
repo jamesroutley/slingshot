@@ -1,5 +1,3 @@
-
-
 class Checkpoint {
   constructor(pos, r) {
     this.pos = pos;

@@ -1,6 +1,5 @@
 const constants = require('./constants');
 
-
 class Planet {
   constructor(pos, r) {
     this.pos = pos;

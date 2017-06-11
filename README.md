@@ -5,6 +5,4 @@ A game.
 
 ## todo
 
-- [ ] rotation
-- [ ] stars
-- [ ] planets
+- move all views to a single file for now - remove dependency issue

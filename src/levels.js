@@ -1,5 +1,6 @@
-const levels = {
-  '01': {
+const levels = [
+  // Level 01
+  {
     planets: [
       {
         pos: {
@@ -17,6 +18,6 @@ const levels = {
       },
     ],
   },
-};
+];
 
 module.exports = levels;

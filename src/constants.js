@@ -1,4 +1,11 @@
 const constants = {
+  game: {
+    canvas: {
+      x: 700,
+      y: 720,
+    },
+    frameRate: 30,
+  },
   frameRate: 30,
   planet: {
     density: 5520,  // kg/m^3

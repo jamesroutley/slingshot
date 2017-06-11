@@ -25,7 +25,6 @@ class SpaceShip {
     // Force vector initially points up (0, -1)
     if (this.fuel <= 0) {
       this.stopBoost();
-      console.log('no fuel');
       return;
     }
     const force = new p5.Vector(

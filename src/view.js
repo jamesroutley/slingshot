@@ -163,14 +163,16 @@ class Menu extends View {
   }
 
   keyPressed() {
-    switch (this.p.key) {
-      case '0':
-        const level = new Level(levelsData[0]);
-        constructView(this.p, level.start.bind(level));
-        break;
-      default:
-        break;
+    const numLevels = levelsData.length;
+    const num = parseInt(this.p.key, 10);
+    if (isNaN(num)) {
+      return;
     }
+    if (num >= numLevels) {
+      return;
+    }
+    const level = new Level(levelsData[num]);
+    constructView(this.p, level.start.bind(level));
   }
 }
 

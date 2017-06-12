@@ -78,6 +78,7 @@ class Win extends View {
       constructView(this.p, menuStart);
     }
     if (this.p.key === 'R') {
+      console.log(this.levelNum);
       const levelStart = getLevelStart(this.levelNum);
       constructView(this.p, levelStart);
     }
@@ -151,11 +152,11 @@ class Level extends View {
 
   handleCollisions(ship, planets, checkpoint) {
     if (collide.shipCircle(ship, checkpoint)) {
-      const win = new Win();
+      const win = new Win(this.levelNum);
       constructView(this.p, win.start.bind(win));
     }
     if (collide.shipPlanets(ship, planets)) {
-      const lose = new Lose();
+      const lose = new Lose(this.levelNum);
       constructView(this.p, lose.start.bind(lose));
     }
   }
@@ -186,7 +187,7 @@ class Level extends View {
 const getLevelStart = (levelNum) => {
   // XXX: Same hack as getMenuStart.
   const level = new Level(levelNum, levelsData[levelNum]);
-  constructView(this.p, level.start.bind(level));
+  return level.start.bind(level);
 };
 
 class Menu extends View {
@@ -199,13 +200,15 @@ class Menu extends View {
     p.push();
     p.background(colour.darkGrey);
     this.stars.draw(p);
-    p.textAlign(p.LEFT);
+    p.textAlign(p.CENTER);
+    p.textFont('Open Sans');
+    p.fill(colour.orange);
+    p.textSize(24);
+    p.text('YOU ARE IN SPACE WITH ALMOST NO FUEL', this.centerX, 200);
     p.textSize(16);
     p.fill(colour.grey);
-    p.text(`PRESS [ 0 - ${this.numLevels - 1} ] TO SELECT LEVEL:`, 150, 150);
-    for (let i = 0; i < this.numLevels; i += 1) {
-      p.text(`[ ${i} ] - NAME`, 150, 200 + (i * 25));
-    }
+    p.text('A|W|D: MOVE, R: RESTART, M: MENU', this.centerX, 400);
+    p.text(`PRESS [ 0 - ${this.numLevels - 1} ] TO SELECT LEVEL`, this.centerX, 450);
     p.pop();
   }
 

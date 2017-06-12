@@ -205,6 +205,7 @@ class Menu extends View {
     p.fill(colour.orange);
     p.textSize(24);
     p.text('YOU ARE IN SPACE WITH ALMOST NO FUEL', this.centerX, 200);
+    p.text('YOU MUST REACH A SERIES OF CHECKPOINTS MARKED IN RED', this.centerX, 270);
     p.textSize(16);
     p.fill(colour.grey);
     p.text('A|W|D: MOVE, R: RESTART, M: MENU', this.centerX, 400);

@@ -74,7 +74,6 @@ class SpaceShip {
   }
 
   draw(p) {
-    console.log(this.pos)
     this.handleKeyPress(p);
     this.move();
     p.fill(colour.grey);

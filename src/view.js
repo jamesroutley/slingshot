@@ -93,8 +93,9 @@ class Lose extends View {
 }
 
 class Level extends View {
-  constructor(data) {
+  constructor(levelNum, data) {
     super();
+    this.levelNum = levelNum;
     this.data = data;
     // this.p = null;
 
@@ -137,6 +138,13 @@ class Level extends View {
       p.pop();
     });
   }
+
+  keyPressed() {
+    if (this.p.key === 'R') {
+      const level = new Level(this.levelNum, levelsData[this.levelNum]);
+      constructView(this.p, level.start.bind(level));
+    }
+  }
 }
 
 class Menu extends View {
@@ -168,7 +176,7 @@ class Menu extends View {
     if (num >= numLevels) {
       return;
     }
-    const level = new Level(levelsData[num]);
+    const level = new Level(num, levelsData[num]);
     constructView(this.p, level.start.bind(level));
   }
 }

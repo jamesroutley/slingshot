@@ -8,5 +8,6 @@ const p5 = require('p5');
 // For level testing only:
 const levelsData = require('./levels');
 
-const level = new view.Level(levelsData[5]);
+const levelNum = 5;
+const level = new view.Level(levelNum, levelsData[levelNum]);
 new p5(level.start.bind(level), 'gameCanvas');

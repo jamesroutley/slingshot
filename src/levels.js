@@ -70,13 +70,13 @@ const levels = [
       fuel: 5,
     },
   },
-  // Level 3 - maybe get rid of this one?
+  // Level 3
   // Large planet middle top
   {
     planets: [
       {
         pos: new p5.Vector(
-          600, 100,
+          620, 100,
         ),
         r: 70000000,  // meters
         density: constants.planet.earthDensity,
@@ -95,7 +95,7 @@ const levels = [
     planets: [
       {
         pos: new p5.Vector(
-          600, 350,
+          620, 350,
         ),
         r: 1000000,  // meters
         density: constants.planet.neutronStarDensity,

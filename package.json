@@ -37,6 +37,6 @@
     "test": "jest src",
     "lint": "eslint src",
     "lintf": "cd src && flow",
-    "deploy": "webpack && aws s3 sync dist s3://slingshot.jamesroutley.co.uk --delete"
+    "deploy": "rm dist/index.html && cp index.html dist/ && webpack && aws s3 sync dist s3://slingshot.jamesroutley.co.uk --delete"
   }
 }

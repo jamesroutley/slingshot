@@ -45,6 +45,11 @@ class View {
 }
 
 class Win extends View {
+  constructor(levelNum) {
+    super();
+    this.levelNum = levelNum;
+  }
+
   draw() {
     const p = this.p;
     p.background(colour.darkGrey);
@@ -57,18 +62,34 @@ class Win extends View {
     p.text('LEVEL', this.centerX, 300);
     p.text('COMPLETE', this.centerX, 360);
     p.text('-------------', this.centerX, 420);
+    p.textFont('Open Sans');
     p.textSize(16);
     p.fill(colour.grey);
-    p.text('[ PRESS ANY KEY TO CONTINUE ]', this.centerX, 500);
+    p.text('[ R: REPLAY - M: MENU ]', this.centerX, 500);
   }
 
   keyPressed() {
-    // Hacky AF
-    location.reload();
+    // XXX: Circular dependency: Menu -> Level -> Win -> Menu.
+    // Javascript doesn't hoist classes, but it does hoist functions.
+    // By wrapping the Menu class initialiser in a function, we instantiate
+    // it before it is defined.
+    if (this.p.key === 'M') {
+      const menuStart = getMenuStart();
+      constructView(this.p, menuStart);
+    }
+    if (this.p.key === 'R') {
+      const levelStart = getLevelStart(this.levelNum);
+      constructView(this.p, levelStart);
+    }
   }
 }
 
 class Lose extends View {
+  constructor(levelNum) {
+    super();
+    this.levelNum = levelNum;
+  }
+
   draw() {
     const p = this.p;
     p.background(colour.darkGrey);
@@ -81,14 +102,25 @@ class Lose extends View {
     p.text('LEVEL', this.centerX, 300);
     p.text('FAILED', this.centerX, 360);
     p.text('-------------', this.centerX, 420);
+    p.textFont('Open Sans');
     p.textSize(16);
     p.fill(colour.grey);
-    p.text('[ PRESS ANY KEY TO CONTINUE ]', this.centerX, 500);
+    p.text('[ R: REPLAY - M: MENU ]', this.centerX, 500);
   }
 
   keyPressed() {
-    // Hacky AF
-    location.reload();
+    // XXX: Circular dependency: Menu -> Level -> Win -> Menu.
+    // Javascript doesn't hoist classes, but it does hoist functions.
+    // By wrapping the Menu class initialiser in a function, we instantiate
+    // it before it is defined.
+    if (this.p.key === 'M') {
+      const menuStart = getMenuStart();
+      constructView(this.p, menuStart);
+    }
+    if (this.p.key === 'R') {
+      const levelStart = getLevelStart(this.levelNum);
+      constructView(this.p, levelStart);
+    }
   }
 }
 
@@ -140,12 +172,22 @@ class Level extends View {
   }
 
   keyPressed() {
+    if (this.p.key === 'M') {
+      const menuStart = getMenuStart();
+      constructView(this.p, menuStart);
+    }
     if (this.p.key === 'R') {
       const level = new Level(this.levelNum, levelsData[this.levelNum]);
       constructView(this.p, level.start.bind(level));
     }
   }
 }
+
+const getLevelStart = (levelNum) => {
+  // XXX: Same hack as getMenuStart.
+  const level = new Level(levelNum, levelsData[levelNum]);
+  constructView(this.p, level.start.bind(level));
+};
 
 class Menu extends View {
   constructor() {
@@ -180,6 +222,15 @@ class Menu extends View {
     constructView(this.p, level.start.bind(level));
   }
 }
+
+const getMenuStart = () => {
+  // XXX: Circular dependency: Menu -> Level -> Win/Lose -> Menu.
+  // Javascript doesn't hoist classes, but it does hoist functions.
+  // By wrapping the Menu class initialiser in a function, we instantiate
+  // it before it is defined.
+  const menu = new Menu();
+  return menu.start.bind(menu);
+};
 
 class Splash extends View {
   draw() {

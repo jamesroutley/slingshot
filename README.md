@@ -1,11 +1,5 @@
 # Slingshot
 
-A game.
+![Animated image of Slingshot splash screen](http://g.recordit.co/30q4uOw6wo.gif)
 
-
-Level design:
-
-- 3x static levels
-- 3x slowly moving planet
-- 2 large planets, need to work through middle
-- Black hole?
+Slingshot is a 2D interplanetary physics game, built for a Recurse Center game jam. It uses the [P5](https://p5js.org/) drawing library, but everything else is custom, including the physics and game engines.

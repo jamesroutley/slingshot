@@ -105,7 +105,7 @@ class Level extends View {
     this.drawables = this.drawables.concat(this.planets);
 
     this.spaceship = new SpaceShip(
-      new p5.Vector(20, 680), this.planets, this.data.spaceship.fuel);
+      this.data.spaceship.pos, this.planets, this.data.spaceship.fuel);
     this.drawables.push(this.spaceship);
 
     const hud = new HUD(this.spaceship);

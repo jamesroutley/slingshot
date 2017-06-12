@@ -1,4 +1,6 @@
 const constants = require('./constants');
+const physics = require('./physics');
+const p5 = require('p5');
 
 class Planet {
   constructor(data) {
@@ -8,9 +10,15 @@ class Planet {
     this.density = data.density;
     // model mass as if planet is 3D, even though it's rendered in 2D
     this.mass = this.density * ((4 / 3) * Math.PI * (this.r ** 3));
+    this.v = data.v;
+  }
+
+  move() {
+    this.pos = physics.position(this.pos, this.v);
   }
 
   draw(p) {
+    this.move();
     p.fill('#ff8a65');
     p.ellipse(this.pos.x, this.pos.y, this.rendered_r);
   }

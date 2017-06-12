@@ -73,7 +73,7 @@ class SpaceShip {
   }
 
   draw(p) {
-    console.log(this.pos);
+    console.log(this.pos)
     this.handleKeyPress(p);
     this.move();
     p.fill('#babdbe');

@@ -253,14 +253,16 @@ class Splash extends View {
 
     p.textSize(16);
     p.fill(colour.grey);
-    p.text('[ PRESS ANY KEY TO START ]', this.centerX, 500);
+    p.text('[ PRESS SPACE TO START ]', this.centerX, 500);
 
     p.pop();
   }
 
   keyPressed() {
-    const menu = new Menu();
-    constructView(this.p, menu.start.bind(menu));
+    if (this.p.key === ' ') {
+      const menu = new Menu();
+      constructView(this.p, menu.start.bind(menu));
+    }
   }
 }
 

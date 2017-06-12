@@ -9,7 +9,6 @@ class HUD {
     p.push();
     const fuelPercent = Math.floor(
       (this.spaceship.fuel / this.spaceship.totalFuel) * 100);
-    // p.translate(55, 20);
     p.fill(colour.grey);
     p.rect(5, 5, 110, 20);
     p.fill(colour.orange);

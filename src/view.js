@@ -1,4 +1,5 @@
 const constants = require('./constants');
+const colour = require('./colour');
 const collide = require('./collide');
 const Checkpoint = require('./checkpoint');
 const p5 = require('p5');
@@ -26,7 +27,7 @@ class View {
   setupP5() {
     this.p.frameRate(constants.game.frameRate);
     this.p.createCanvas(this.size.x, this.size.y);
-    this.p.background('#102027');
+    this.p.background(colour.darkGrey);
   }
 
   draw() {
@@ -46,18 +47,18 @@ class View {
 class Win extends View {
   draw() {
     const p = this.p;
-    p.background('#102027');
+    p.background(colour.darkGrey);
     this.stars.draw(p);
     p.textAlign(p.CENTER);
     p.textFont('Audiowide');
     p.textSize(72);
-    p.fill('#ff8a65');
+    p.fill(colour.orange);
     p.text('-------------', this.centerX, 240);
     p.text('LEVEL', this.centerX, 300);
     p.text('COMPLETE', this.centerX, 360);
     p.text('-------------', this.centerX, 420);
     p.textSize(16);
-    p.fill('#babdbe');
+    p.fill(colour.grey);
     p.text('[ PRESS ANY KEY TO CONTINUE ]', this.centerX, 500);
   }
 
@@ -70,18 +71,18 @@ class Win extends View {
 class Lose extends View {
   draw() {
     const p = this.p;
-    p.background('#102027');
+    p.background(colour.darkGrey);
     this.stars.draw(p);
     p.textAlign(p.CENTER);
     p.textFont('Audiowide');
     p.textSize(72);
-    p.fill('#ff8a65');
+    p.fill(colour.orange);
     p.text('-------------', this.centerX, 240);
     p.text('LEVEL', this.centerX, 300);
     p.text('FAILED', this.centerX, 360);
     p.text('-------------', this.centerX, 420);
     p.textSize(16);
-    p.fill('#babdbe');
+    p.fill(colour.grey);
     p.text('[ PRESS ANY KEY TO CONTINUE ]', this.centerX, 500);
   }
 
@@ -128,7 +129,7 @@ class Level extends View {
 
   draw() {
     const p = this.p;
-    p.background('#102027');
+    p.background(colour.darkGrey);
     this.handleCollisions(this.spaceship, this.planets, this.checkpoint);
     this.drawables.forEach((drawable) => {
       p.push();
@@ -146,11 +147,11 @@ class Menu extends View {
   draw() {
     const p = this.p;
     p.push();
-    p.background('#102027');
+    p.background(colour.darkGrey);
     this.stars.draw(p);
     p.textAlign(p.LEFT);
     p.textSize(16);
-    p.fill('#babdbe');
+    p.fill(colour.grey);
     p.text(`PRESS [ 0 - ${this.numLevels - 1} ] TO SELECT LEVEL:`, 150, 150);
     for (let i = 0; i < this.numLevels; i += 1) {
       p.text(`[ ${i} ] - NAME`, 150, 200 + (i * 25));
@@ -176,13 +177,13 @@ class Splash extends View {
   draw() {
     const p = this.p;
     p.push();
-    p.background('#102027');
+    p.background(colour.darkGrey);
     this.stars.draw(p);
 
     p.textAlign(p.CENTER);
     p.textFont('Audiowide');
     p.textSize(72);
-    p.fill('#ff8a65');
+    p.fill(colour.orange);
     p.text('-------------', this.centerX, 240);
     p.text('SLINGSHOT', this.centerX, 300);
     p.text('-------------', this.centerX, 360);
@@ -192,7 +193,7 @@ class Splash extends View {
     p.text('AN INTERPLANETARY PHYSICS GAME', this.centerX, 400);
 
     p.textSize(16);
-    p.fill('#babdbe');
+    p.fill(colour.grey);
     p.text('[ PRESS ANY KEY TO START ]', this.centerX, 500);
 
     p.pop();

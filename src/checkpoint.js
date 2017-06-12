@@ -1,3 +1,5 @@
+const colour = require('./colour');
+
 class Checkpoint {
   constructor(pos, r) {
     this.pos = pos;
@@ -5,7 +7,7 @@ class Checkpoint {
   }
 
   draw(p) {
-    p.fill('#9a0007');
+    p.fill(colour.red);
     p.ellipse(this.pos.x, this.pos.y, this.rendered_r);
   }
 }

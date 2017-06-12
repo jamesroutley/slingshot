@@ -11,6 +11,7 @@ class Planet {
     // model mass as if planet is 3D, even though it's rendered in 2D
     this.mass = this.density * ((4 / 3) * Math.PI * (this.r ** 3));
     this.v = data.v;
+    this.colour = data.colour;
   }
 
   move() {
@@ -19,7 +20,7 @@ class Planet {
 
   draw(p) {
     this.move();
-    p.fill('#ff8a65');
+    p.fill(this.colour);
     p.ellipse(this.pos.x, this.pos.y, this.rendered_r);
   }
 }

@@ -1,4 +1,5 @@
 const constants = require('./constants');
+const colour = require('./colour');
 const physics = require('./physics');
 const p5 = require('p5');
 
@@ -76,13 +77,13 @@ class SpaceShip {
     console.log(this.pos)
     this.handleKeyPress(p);
     this.move();
-    p.fill('#babdbe');
+    p.fill(colour.grey);
     p.translate(this.pos.x, this.pos.y);
     p.rotate(this.rotation);
     p.rect(-3, -5, this.width, this.length, 2);
     // TODO: move this logic into boost() ?
     if (p.keyIsPressed && p.key === 'w' && this.fuel > 0) {
-      p.fill('#ff8a65');
+      p.fill(colour.orange);
       p.rect(-3, 4, 6, 3);
     }
   }

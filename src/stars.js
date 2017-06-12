@@ -1,4 +1,5 @@
 const constants = require('./constants');
+const colour = require('./colour');
 const p5 = require('p5');
 
 const randInRange = n => (
@@ -20,7 +21,7 @@ class Stars {
   }
 
   draw(p) {
-    p.fill('#ffecb3');
+    p.fill(colour.yellow);
     if (p.frameCount % 2 === 0) {
       this.offset += 1;
     }

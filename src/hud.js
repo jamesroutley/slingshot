@@ -1,3 +1,5 @@
+const colour = require('./colour');
+
 class HUD {
   constructor(spaceship) {
     this.spaceship = spaceship;
@@ -8,9 +10,9 @@ class HUD {
     const fuelPercent = Math.floor(
       (this.spaceship.fuel / this.spaceship.totalFuel) * 100);
     // p.translate(55, 20);
-    p.fill('#babdbe');
+    p.fill(colour.grey);
     p.rect(5, 5, 110, 20);
-    p.fill('#ff8a65');
+    p.fill(colour.orange);
     p.rect(10, 10, fuelPercent, 10);
     p.pop();
   }

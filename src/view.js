@@ -139,6 +139,10 @@ class Level extends View {
 }
 
 class Menu extends View {
+  constructor() {
+    super();
+    this.numLevels = levelsData.length;
+  }
   draw() {
     const p = this.p;
     p.push();
@@ -147,17 +151,10 @@ class Menu extends View {
     p.textAlign(p.LEFT);
     p.textSize(16);
     p.fill('#babdbe');
-    p.text('PRESS [ 0 - 9 ] TO SELECT LEVEL:', 150, 150);
-    p.text('[ 0 ] - NAME', 150, 200);
-    p.text('[ 1 ] - NAME', 150, 225);
-    p.text('[ 2 ] - NAME', 150, 250);
-    p.text('[ 3 ] - NAME', 150, 275);
-    p.text('[ 4 ] - NAME', 150, 300);
-    p.text('[ 5 ] - NAME', 150, 325);
-    p.text('[ 6 ] - NAME', 150, 350);
-    p.text('[ 7 ] - NAME', 150, 375);
-    p.text('[ 8 ] - NAME', 150, 400);
-    p.text('[ 9 ] - NAME', 150, 425);
+    p.text(`PRESS [ 0 - ${this.numLevels - 1} ] TO SELECT LEVEL:`, 150, 150);
+    for (let i = 0; i < this.numLevels; i += 1) {
+      p.text(`[ ${i} ] - NAME`, 150, 200 + (i * 25));
+    }
     p.pop();
   }
 

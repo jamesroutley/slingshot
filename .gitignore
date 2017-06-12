@@ -66,6 +66,7 @@ typings/
 
 flow-typed/
 .vscode/
+dist/
 
 # Created by https://www.gitignore.io/api/macos
 

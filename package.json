@@ -31,11 +31,12 @@
     "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
-    "build": "webpack app/index.js dist/bundle.js",
+    "build": "webpack src/index.js dist/js/bundle.js",
     "dev:wds": "webpack-dev-server --progress",
     "start": "babel-node src",
     "test": "jest src",
     "lint": "eslint src",
-    "lintf": "cd src && flow"
+    "lintf": "cd src && flow",
+    "deploy": "webpack && aws s3 sync dist s3://slingshot.jamesroutley.co.uk --delete"
   }
 }

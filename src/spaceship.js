@@ -3,20 +3,20 @@ const physics = require('./physics');
 const p5 = require('p5');
 
 class SpaceShip {
-  constructor(pos, planets) {
+  constructor(pos, planets, initialFuel) {
     this.pos = pos;
     this.planets = planets;
     this.v = new p5.Vector(0, 0);
     this.a = new p5.Vector(0, 0);
     this.booster_a = new p5.Vector(0, 0);
     this.rotation = 0;
-    this.totalFuel = 1800;
+    this.totalFuel = initialFuel * constants.game.frameRate;
     this.fuel = this.totalFuel;
     // TODO: move these to constants.js
     this.width = 6;
     this.length = 10;
     this.mass = 100000;
-    this.rocketForcePerS = 10000000;
+    this.rocketForcePerS = 50000000;
   }
 
   boost() {
@@ -28,7 +28,7 @@ class SpaceShip {
       return;
     }
     const force = new p5.Vector(
-      0, -this.rocketForcePerS / constants.frameRate);
+      0, -this.rocketForcePerS / constants.game.frameRate);
     // Rotate it to match direction of spaceship
     force.rotate(this.rotation);
     this.booster_a = physics.acceleration(force, this.mass);
@@ -73,6 +73,7 @@ class SpaceShip {
   }
 
   draw(p) {
+    console.log(this.pos);
     this.handleKeyPress(p);
     this.move();
     p.fill('#babdbe');

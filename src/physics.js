@@ -1,7 +1,7 @@
 const constants = require('./constants');
 const p5 = require('p5');
 
-const dt = 1 / constants.frameRate;
+const dt = 1 / constants.game.frameRate;
 
 const acceleration = (force, mass) => (
   new p5.Vector((force.x / mass), (force.y / mass))

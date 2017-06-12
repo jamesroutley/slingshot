@@ -24,7 +24,7 @@ class View {
   }
 
   setupP5() {
-    this.p.frameRate(constants.frameRate);
+    this.p.frameRate(constants.game.frameRate);
     this.p.createCanvas(this.size.x, this.size.y);
     this.p.background('#102027');
   }
@@ -101,18 +101,17 @@ class Level extends View {
 
     this.drawables.push(this.stars);
 
-    this.planets = this.data.planets.map(planet => (
-      new Planet(new p5.Vector(planet.pos.x, planet.pos.y), planet.r)
-    ));
+    this.planets = this.data.planets.map(planet => (new Planet(planet)));
     this.drawables = this.drawables.concat(this.planets);
 
-    this.spaceship = new SpaceShip(new p5.Vector(20, 690), this.planets);
+    this.spaceship = new SpaceShip(
+      new p5.Vector(20, 680), this.planets, this.data.spaceship.fuel);
     this.drawables.push(this.spaceship);
 
     const hud = new HUD(this.spaceship);
     this.drawables.push(hud);
 
-    this.checkpoint = new Checkpoint(new p5.Vector(670, 30), 20);
+    this.checkpoint = new Checkpoint(new p5.Vector(1210, 30), 20);
     this.drawables.push(this.checkpoint);
   }
 
@@ -208,4 +207,7 @@ class Splash extends View {
   }
 }
 
-module.exports = Splash;
+module.exports = {
+  Splash,
+  Level,
+};

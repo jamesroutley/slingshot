@@ -3,6 +3,9 @@
 A game.
 
 
-## todo
+Level design:
 
-- move all views to a single file for now - remove dependency issue
+- 3x static levels
+- 3x slowly moving planet
+- 2 large planets, need to work through middle
+- Black hole?
